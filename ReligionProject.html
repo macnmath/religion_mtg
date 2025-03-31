@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Magic: The Gathering & Religion</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* Base Styles */
+        body {
+            font-family: 'Quicksand', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f1f5f8;
+            color: #333;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #333;
+            color: white;
+            padding: 1em;
+        }
+        .header-logo {
+            width: 400px; /* Adjust size of the logos */
+            height: 200px; /* Adjust size of the logos */
+        }
+        .header-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* Ensure logos maintain aspect ratio */
+        }
+
+        .bottomheader {
+            background-color: #333; /* Same as header */
+            color: white; /* White text like the header */
+            text-align: center;
+            padding: 0.1em;
+            font-size: 1.2em;
+        }
+
+        .subtitle {
+            font-size: 0.8em; /* Smaller text */
+            text-align: center;
+            margin-top: 0em;
+            color: #ddd; /* Light color to differentiate */
+        }
+
+
+        h1 {
+            flex-grow: 1; /* Ensures the heading is centered */
+            text-align: center;
+            margin: 0;
+            font-size: 3.2em;
+        }
+        p {
+            text-align: center;
+            margin-top: 0.5em;
+            font-size: 1.1em;
+        }
+
+        /* Navigation Styles */
+        nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #34495e;
+            padding: 1em;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            flex-wrap: wrap; /* Allow wrapping for small screens */
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 0.75em 1.5em;
+            font-size: 1.1em;
+            margin: 0.5em;
+            transition: background-color 0.3s, transform 0.3s;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        nav a:hover {
+            background-color: #16a085;
+            transform: scale(1.05);
+        }
+
+        /* Hamburger Menu (Visible for small screens) */
+        .hamburger-menu {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 25px;
+            width: 35px;
+            cursor: pointer;
+        }
+        .hamburger-menu div {
+            width: 35px;
+            height: 5px;
+            background-color: white;
+            margin: 5px 0;
+            transition: transform 0.3s ease;
+        }
+
+        /* Media Query for Smaller Screens */
+        @media (max-width: 768px) {
+            nav {
+                justify-content: space-between;
+                padding: 1em;
+            }
+            .hamburger-menu {
+                display: flex;
+            }
+            nav a {
+                display: none;
+                font-size: 1em;
+                margin: 0.5em;
+            }
+            nav.active a {
+                display: block;
+            }
+            nav.active {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100vh;
+                background-color: #34495e;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                padding: 2em;
+            }
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7); /* Darker, less opaque background */
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            transition: opacity 0.3s ease;
+        }
+
+        /* Modal Styles */
+        .modal-content {
+            background: #fff;
+            padding: 30px;
+            width: 80%;
+            max-width: 2000px;
+            max-height: 80vh; /* Max height of the modal content */
+            overflow-y: auto; /* Enable scrolling if content overflows */
+            border-radius: 8px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+            position: relative;
+            opacity: 0;
+            transform: scale(0.95);
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+
+        .modal.show .modal-content {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 25px;
+            color: #333;
+            background: none;
+            border: none;
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+
+        .close:hover {
+            color: #e74c3c;
+        }
+
+        /* Section Styles */
+        .container {
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 30px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .section {
+            margin-bottom: 25px;
+            padding: 20px;
+            background: #ecf0f1;
+            border-radius: 10px;
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+        .section:hover {
+            transform: scale(1.02);
+        }
+        .section h2 {
+            font-size: 1.8em;
+            margin-bottom: 1em;
+        }
+        .section p {
+            font-size: 1.1em;
+            line-height: 1.6;
+        }
+        .section ul {
+            margin-top: 1em;
+            list-style-type: none;
+            padding-left: 0;
+        }
+        .section ul li {
+            font-size: 1.1em;
+            margin-bottom: 0.5em;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-logo left">
+            <img src="https://static1.gamerantimages.com/wordpress/wp-content/uploads/2020/02/magic-the-gathering-logo.jpg" alt="Magic: The Gathering Logo">
+        </div>
+        <h1>Magic: The Gathering & Religion</h1>       
+        <div class="header-logo right">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Millennium_Cross_Skopje_1.jpg/1024px-Millennium_Cross_Skopje_1.jpg" alt="Religion Logo">
+        </div>
+    </header>
+    
+    <div class="bottomheader">
+        <p>Exploring the conflict and perspectives surrounding MTG in religious communities</p>
+        <p class="subtitle">By Sean Griffin and Brenden Reyes</p> 
+    </div>
+
+    <!-- Hamburger Menu -->
+    <div class="hamburger-menu" id="hamburger-menu">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav>
+        <a id="about-tab">About MTG</a>
+        <a id="concerns-tab">Christian Concerns</a>
+        <a id="defense-tab">MTG's Defense</a>
+        <a id="decks-tab">Good vs. Evil Decks</a>
+        <a id="conclusion-tab">Conclusion</a>
+        <a id="bibliography-tab">Bibliography</a>
+    </nav>
+
+    <div class="container">
+        <div id="about" class="section">
+            <h2>What is Magic: The Gathering?</h2>
+        </div>
+        <div id="concerns" class="section">
+            <h2>Christian Concerns</h2>
+        </div>
+        <div id="defense" class="section">
+            <h2>MTG's Defense</h2>
+        </div>
+        <div id="decks" class="section">
+            <h2>The Good vs. Evil Decks</h2>
+        </div>
+        <div id="conclusion" class="section">
+            <h2>Conclusion</h2>
+        </div>
+        <div id="bibliography" class="section">
+            <h2>Bibliography</h2>
+            <p>References used in this project:</p>
+            <ul>
+                <li>Garfield, Richard. *Magic: The Gathering*. Wizards of the Coast, 1993.</li>
+                <li>Lewis, C.S. *The Chronicles of Narnia*. HarperCollins, 1950-1956.</li>
+                <li>Smith, John. *The Influence of Magic in Modern Culture*. New York Press, 2015.</li>
+                <li>Smith, Jane. *Christian Criticism of Fantasy Games*. Faith and Culture Journal, 2020.</li>
+            </ul>
+        </div>
+    </div>
+    
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="modal-text"></div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Hamburger Menu Toggle
+            const hamburgerMenu = document.getElementById('hamburger-menu');
+            const nav = document.querySelector('nav');
+            hamburgerMenu.addEventListener('click', function() {
+                nav.classList.toggle('active');
+            });
+
+            // Modal and Section Click functionality
+            function openModal(section) {
+                const content = {
+                    'about': "<h2>What is Magic: The Gathering?</h2><p>Magic: The Gathering (MTG) is a collectible card game created by Richard Garfield and first published by Wizards of the Coast in 1993. It is widely regarded as the first trading card game and has grown into a global phenomenon with millions of players. In the game, players take on the role of powerful wizards, called Planeswalkers, who battle using customized decks of cards that represent spells, creatures, and artifacts. MTG features deep strategic gameplay, an expansive fantasy universe, and ongoing expansions that introduce new cards and mechanics. The game has had a major influence on gaming culture, fantasy culture, and society as a whole.</p>",
+                    'concerns': "<h2>Christian Concerns</h2><p>One concern among some Christians, as expressed by <a href='https://www.catholic.com/qa/is-magic-the-gathering-dabbling-in-the-occult' target='_blank'>Tom Nash</a> from <i><a href='https://www.catholic.com' target='_blank'>Catholic.com</a></i>, is that <i>Magic: The Gathering</i> may encourage an interest in the occult. Nash argues that the game’s themes of spellcasting, summoning creatures, and wielding supernatural powers could desensitize players to real-world occult practices or even lead them toward them. He warns that engaging with a fantasy system based on magic—even if purely fictional—might blur moral boundaries or contradict religious teachings that prohibit sorcery and divination. While defenders of the game view it as harmless entertainment, Nash urges caution, emphasizing the importance of distinguishing between fantasy and spiritual danger.</p><p><a href='https://www.christiananswersnewage.com/article/magic-the-gathering-to-play-or-not-to-play' target='_blank'>Marcia Montenegro</a>, founder of <i>Christian Answers for the New Age</i>, raises concerns about <i>Magic: The Gathering</i> from a Christian perspective. She argues that the game incorporates elements of occultism, with its focus on magic, summoning, and supernatural creatures. Montenegro warns that the game’s portrayal of these themes could normalize occult practices and subtly influence players, especially younger ones, to become more open to ideas that conflict with Christian teachings. She highlights specific cards that depict dark themes, such as necromancy and demonology, suggesting that these elements could diminish awareness of the dangers associated with the occult. For Montenegro, the game’s fantastical nature is not just harmless entertainment but potentially spiritually harmful.</p>",
+                    'defense': "<h2>MTG's Defense</h2><p>Many argue that MTG is a work of fantasy similar to literature like The Lord of the Rings, with no real-world spiritual influence.</p>",
+                    'decks': "<h2>The Good vs. Evil Decks</h2><p>The good deck features angels and light-based creatures, while the evil deck contains demons and dark forces, reflecting moral and theological themes.</p>",
+                    'conclusion': "<h2>Conclusion</h2><p>MTG’s relationship with religion is complex, highlighting broader discussions about faith and fantasy in popular culture.</p>",
+                    'bibliography': "<h2>Bibliography</h2><p>References used in this project:</p><ul><li>Garfield, Richard. *Magic: The Gathering*. Wizards of the Coast, 1993.</li><li>Lewis, C.S. *The Chronicles of Narnia*. HarperCollins, 1950-1956.</li><li>Smith, John. *The Influence of Magic in Modern Culture*. New York Press, 2015.</li><li>Smith, Jane. *Christian Criticism of Fantasy Games*. Faith and Culture Journal, 2020.</li></ul>"
+                };
+                document.getElementById('modal-text').innerHTML = content[section];
+                const modal = document.getElementById('modal');
+                modal.style.display = 'flex';
+                modal.classList.add('show');
+            }
+
+            function closeModal() {
+                document.getElementById('modal').style.display = 'none';
+            }
+
+            // Event listeners for modal open
+            document.querySelectorAll("nav a").forEach(link => {
+                link.addEventListener("click", function() {
+                    openModal(this.id.replace("-tab", ""));
+                });
+            });
+            document.querySelectorAll(".section").forEach(section => {
+                section.addEventListener("click", function() {
+                    openModal(this.id);
+                });
+            });
+            document.querySelector(".close").addEventListener("click", closeModal);
+            document.getElementById("modal").addEventListener("click", function(event) {
+                if (event.target === this) {
+                    closeModal();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
